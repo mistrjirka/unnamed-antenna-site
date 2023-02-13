@@ -95,7 +95,7 @@ export class SingleComponent implements OnInit {
     console.log(this.usefulRanges);
     this.createChart(data,'VSWR over measured frequency range', "vswr-chart");
     this.createBarChart(fpvData, 'VSWR over analog fpv channels', "fpv-analog-chart");
-    this.createBarChart(digFpvData, 'VSWR over Dikital fpv channels', "fpv-digital-chart");
+    this.createBarChart(digFpvData, 'VSWR over Digital fpv channels', "fpv-digital-chart");
     
     this.ready = true;
   }

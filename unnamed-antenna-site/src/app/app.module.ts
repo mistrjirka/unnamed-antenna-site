@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { SingleComponent } from './single/single.component';
+import { AntennaListingComponent } from './antenna-listing/antenna-listing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SingleComponent,
+    AntennaListingComponent,
   ],
   imports: [
     BrowserModule,
