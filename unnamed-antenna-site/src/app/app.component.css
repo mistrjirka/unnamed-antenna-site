@@ -1,0 +1,21 @@
+
+.navbar-brand {
+    color: #dbdbdb;
+    line-height: 45px;
+    margin-left: 30px;
+}
+
+.navbar-brand img{
+    margin-right: 20px;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar-brand {
+        font-size: medium;
+    }
+}
