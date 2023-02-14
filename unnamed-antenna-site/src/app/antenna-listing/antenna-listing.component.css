@@ -1,0 +1,12 @@
+.list-group-dark{
+    background-color: #212529;
+}
+
+.list-group-dark li{
+    background-color: #212529;
+    color: white;
+}
+
+.list-of-links li{
+    cursor: pointer;
+}

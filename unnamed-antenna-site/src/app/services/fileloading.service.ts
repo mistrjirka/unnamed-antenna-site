@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IGraphData, IFrequencyData, IFrequencyRange, IFrequencyTable } from './model/chart';
+import { IGraphData, IFrequencyData, IFrequencyRange, IFrequencyTable } from '../model/chart';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable } from 'rxjs';
 
@@ -53,7 +53,9 @@ export class FileloadingService {
   parseDataToGraph(
     data: IFrequencyData[],
     limit: number = 5,
-    startFrequency: number = 0
+    startFrequency: number = 0,
+    units: string = "Mhz",
+    unitDivider: number = 1000000
   ): IGraphData {
     let parsedData: IGraphData = {
       labels: [],
@@ -66,9 +68,9 @@ export class FileloadingService {
       ],
     };
     data.forEach((point) => {
-      if (point.frequency / 1000000 > startFrequency) {
+      if (point.frequency / unitDivider > startFrequency) {
         parsedData.labels.push(
-          (point.frequency / 1000000000).toFixed(4).toString() + 'Ghz'
+          (point.frequency / unitDivider).toFixed(0).toString() + units
         );
         parsedData.datasets[0].data.push(
           this.calculateSwr(point.real, point.imag, limit).toString()
@@ -81,7 +83,9 @@ export class FileloadingService {
   parseDataToFpvGraph(
     data: IFrequencyData[],
     table: IFrequencyTable[],
-    color: string = 'red'
+    color: string = 'red',
+    units: string = "Mhz",
+    unitDivider: number = 1000000
   ): IGraphData {
     let parsedData: IGraphData = {
       labels: [],
@@ -95,20 +99,20 @@ export class FileloadingService {
     };
 
     table.forEach((channel) => {
-      parsedData.labels.push(channel.name + ' ' + channel.center + 'Mhz');
+      parsedData.labels.push(channel.name + ' ' + channel.center + units);
       let start = Math.trunc(channel.center - channel.bandwidth / 2);
       let end = Math.trunc(channel.center + channel.bandwidth / 2);
       let startIndex = 0;
       for (
         ;
         startIndex < data.length &&
-        data[startIndex].frequency / 1000000 < start;
+        data[startIndex].frequency / unitDivider < start;
         startIndex++
       );
       let endIndex = startIndex;
       for (
         ;
-        endIndex < data.length && data[endIndex].frequency / 1000000 < end;
+        endIndex < data.length && data[endIndex].frequency / unitDivider < end;
         endIndex++
       );
 
@@ -128,7 +132,9 @@ export class FileloadingService {
     data: IFrequencyData[],
     tables: IFrequencyTable[][],
     threshold: number = 2,
-    minFrequency: number = 0
+    minFrequency: number = 0,
+    units: string = "Mhz",
+    unitDivider: number = 1000000
   ): IFrequencyRange[] {
     let usefulRanges: IFrequencyRange[] = [];
     let lastFrequency: number = 0;
@@ -136,7 +142,7 @@ export class FileloadingService {
     let swrAveraging: number = 0;
     let length: number = 0;
     data.forEach((point) => {
-      if (point.frequency / 1000000 > minFrequency) {
+      if (point.frequency / unitDivider > minFrequency) {
         let swr = this.calculateSwr(point.real, point.imag);
         if (swr <= threshold) {
           if (!logging) {
@@ -187,12 +193,14 @@ export class FileloadingService {
 
   public identifyGoodChannels(
     ranges: IFrequencyRange[],
-    tables: IFrequencyTable[][]
+    tables: IFrequencyTable[][],
+    units: string = "Mhz",
+    unitDivider: number = 1000000
   ): IFrequencyRange[] {
     ranges.forEach((range) => {
       tables.forEach((table) => {
         table.forEach((channel) => {
-          if(channel.center < (range.center + range.bandwidth/2)/1000000 && channel.center > (range.center - range.bandwidth/2)/1000000){
+          if(channel.center < (range.center + range.bandwidth/2)/unitDivider && channel.center > (range.center - range.bandwidth/2)/unitDivider){
             range.channels.push(channel)
           }
         });

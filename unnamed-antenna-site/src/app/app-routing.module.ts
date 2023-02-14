@@ -4,8 +4,8 @@ import { SingleComponent } from './single/single.component';
 import { AppComponent } from './app.component';
 import { AntennaListingComponent } from './antenna-listing/antenna-listing.component';
 const routes: Routes = [
+  { path: 'detail/:id', component: SingleComponent },
   { path: '', component: AntennaListingComponent },
-  { path: 'detail', component: SingleComponent }
 ];
 
 @NgModule({

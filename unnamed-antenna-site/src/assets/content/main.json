@@ -1,0 +1,22 @@
+{
+    "categories": [
+        {"name": "FPV antennas", "id": "fpvantennas"}
+    ],
+    "content": {
+        "fpvantennas": [
+            {
+                "id": "pagoda-rts",
+                "name": "Ready to Sky Pagoda RP-SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Antenna bought from https://www.4fpvquad.cz/antena-sma/rp-sma-dlouha",
+                "dataFile": "1port.s1p",
+                "image":""
+            }
+        
+        ]
+    }
+
+}
