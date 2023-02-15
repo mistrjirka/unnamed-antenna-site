@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IContentAntenna, IContentFile } from '../model/chart';
+import { IContentAntenna, IContentFile, IAntennaList } from '../model/chart';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable({
@@ -76,5 +76,31 @@ export class ListingService {
     });
 
     return antenna;
+  }
+
+  async getAntennas(
+    data: IContentFile | null = null
+  ): Promise<IContentAntenna[]> {
+    let list: IContentAntenna[] = [];
+    let loadedData: IContentFile = {} as IContentFile;
+    if (data == null) {
+      if (this.fileContent == null) {
+        await this.getContent();
+      }
+      if (this.fileContent != null) {
+        loadedData = this.fileContent;
+      }
+    }
+
+    if (data != null) loadedData = data;
+    loadedData.categories.every((category) => {
+      loadedData.content[category.id].every((ant) => {
+        list.push(ant)
+        return true;
+      });
+      return true;
+    });
+    
+    return list;
   }
 }

@@ -27,6 +27,11 @@ export interface IContentCategory{
     id: string;
 }
 
+export interface IAntennaList{
+    name: string;
+    id: string;
+}
+
 export interface IContentAntenna{
     id:string;
     name: string;

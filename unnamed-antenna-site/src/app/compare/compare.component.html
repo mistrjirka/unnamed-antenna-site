@@ -1,0 +1,11 @@
+<h3> Choose antennas </h3>
+
+<ng-select
+ *ngIf="isReady"
+ [items]="optionsList"
+ bindLabel="name"
+ placeholder="Select item"
+ appendTo="body"
+ [multiple]="true"
+ [(ngModel)]="selected">
+</ng-select>
