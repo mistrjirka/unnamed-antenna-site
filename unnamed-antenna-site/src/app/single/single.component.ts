@@ -8,6 +8,7 @@ import {
   IFrequencyData,
   IFrequencyRange,
   IContentAntenna,
+  IFrequencyTable,
 } from '../model/chart';
 import {
   AnalogueFrequencyTable,
@@ -120,43 +121,60 @@ export class SingleComponent implements OnInit {
 
     let frequencyData: IFrequencyData[] =
       await this.fileLoading.getFrequencyDdata(this.antenna.dataFile);
+    
     let data: IGraphData = this.fileLoading.parseDataToGraph(
       frequencyData,
       5,
       5000
     );
-    let fpvData: IGraphData = this.fileLoading.parseDataToFpvGraph(
-      frequencyData,
-      AnalogueFrequencyTable,
-      "red",
-      this.antenna.units,
-      this.antenna.unitDivider
-    );
-    let digFpvData: IGraphData = this.fileLoading.parseDataToFpvGraph(
-      frequencyData,
-      DigFrequencyTable,
-      'blue',
-      this.antenna.units,
-      this.antenna.unitDivider
-    );
+    let tablesToCheck: IFrequencyTable[][] = [];
+
+    if(this.antenna.tables.indexOf("digital")!= -1){
+      tablesToCheck.push(DigFrequencyTable);
+      let digFpvData: IGraphData = this.fileLoading.parseDataToFpvGraph(
+        frequencyData,
+        DigFrequencyTable,
+        'blue',
+        this.antenna.units,
+        this.antenna.unitDivider
+      );
+      this.createBarChart(
+        digFpvData,
+        'VSWR over Digital fpv channels',
+        'fpv-digital-chart'
+      );
+    }
+
+    
+    if(this.antenna.tables.indexOf("analogue")!= -1){
+      tablesToCheck.push(AnalogueFrequencyTable);
+      let fpvData: IGraphData = this.fileLoading.parseDataToFpvGraph(
+        frequencyData,
+        AnalogueFrequencyTable,
+        "red",
+        this.antenna.units,
+        this.antenna.unitDivider
+      );
+
+      this.createBarChart(
+        fpvData,
+        'VSWR over analog fpv channels',
+        'fpv-analog-chart'
+      );
+    }
+    
     this.usefulRanges = this.fileLoading.findUsefulFrequencies(
       frequencyData,
-      [AnalogueFrequencyTable, DigFrequencyTable],
+      tablesToCheck,
       2,
       this.antenna.startFrequency
     );
 
     this.createChart(data, 'VSWR over measured frequency range', 'vswr-chart');
-    this.createBarChart(
-      fpvData,
-      'VSWR over analog fpv channels',
-      'fpv-analog-chart'
-    );
-    this.createBarChart(
-      digFpvData,
-      'VSWR over Digital fpv channels',
-      'fpv-digital-chart'
-    );
+    
+
+    
+    
 
     this.ready = true;
   }

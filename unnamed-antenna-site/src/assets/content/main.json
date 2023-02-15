@@ -4,18 +4,247 @@
     ],
     "content": {
         "fpvantennas": [
+            
             {
-                "id": "pagoda-rts",
+                "id": "tbs-triumph-rpsma",
+                "name": "TBS Triumph RP-SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements)",
+                "dataFile": "tbs-triumph-rpsma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "pagoda-rts-rpsma",
                 "name": "Ready to Sky Pagoda RP-SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
                 "endFrequency": 6000,
-                "description": "Antenna bought from https://www.4fpvquad.cz/antena-sma/rp-sma-dlouha",
-                "dataFile": "1port.s1p",
-                "image":""
-            }
-        
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements). Antenna bought from https://www.4fpvquad.cz/antena-sma/rp-sma-dlouha",
+                "dataFile": "pagoda-rts-rpsma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "eachine-ev100-rpsma",
+                "name": "EACHINE EV100 stick antenna RP-SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements). The antenna came from Eachine ev100 goggles.",
+                "dataFile": "eachine-ev100-rpsma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "crazepony-patch-rpsma",
+                "name": "Crazepony patch antenna RP-SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements). The antenna came from Crazepone box goggles.",
+                "dataFile": "crazepony-patch-rpsma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "uruav-tripple-patch-rpsma",
+                "name": "URUAV Tripple-patch antenna RP-SMA (single connector)",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "uruav-tripple-patch-rpsma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "short-actuna-pagoda-2b",
+                "name": "short Actuna pagoda 2 SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "short-actuna-pagoda-2b.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "foxeer-pagoda-sma",
+                "name": "Foxeer Pagoda SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "foxeer-pagoda-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "lolipop-4-long-sma",
+                "name": "Long Lolipop 4 SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "lolipop-4-long-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "lolipop-3-short-sma",
+                "name": "Short Lolipop 3 SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "lolipop-3-short-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "short-rts-pagoda-sma",
+                "name": "Short Ready to Sky Pagoda SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "short-rts-pagoda-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "rts-pagoda-printed-shell-sma",
+                "name": "Ready to Sky Pagoda printed shell PLA SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "rts-pagoda-printed-shell-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "realacc-plate-antenna-sma",
+                "name": "RealACC plate antenna SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "realacc-plate-antenna-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "tbs-triumph-90-sma",
+                "name": "TBS Triumph 90° adapter SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements)",
+                "dataFile": "tbs-triumph-90-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "mamba-ultras-sma",
+                "name": "Mamba ultras SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements)",
+                "dataFile": "mamba-ultras-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "iflight-long-albatros-sma",
+                "name": "long iFlight Albatros SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements)",
+                "dataFile": "iflight-long-albatros-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "short-iflight-albatros-sma",
+                "name": "short iFlight Albatros SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements)",
+                "dataFile": "short-iflight-albatros-sma.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "actuna-pagoda-2",
+                "name": "Actuna pagoda 2 SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "actuna-pagoda-2.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "immersionrc-spironet",
+                "name": "ImmersionRC spironet SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "immersionrc-spironet.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "short-fatshark-spironet",
+                "name": "short Fatshark spironet SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "short-fatshark-spironet.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "walkeera-rodeo-150",
+                "name": "Walkeera rodeo 150 stick antenna SMA.",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "walkeera-rodeo-150.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            }           
         ]
     }
 
