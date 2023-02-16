@@ -1,4 +1,4 @@
-<h3>List of {{category}} antennas </h3>
+<h3>List of <ng-container *ngIf="category; else default">{{categoryName}}</ng-container><ng-template #default>antennas</ng-template>  </h3>
 <ul class="list-group list-group-dark list-of-links">
     <li *ngFor="let antenna of antennas" class="list-group-item" routerLink="detail/{{antenna.id}}" routerLinkActive="active" ariaCurrentWhenActive="page">{{antenna.name}}</li>
 </ul>

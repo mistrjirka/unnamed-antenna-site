@@ -7,6 +7,7 @@ export interface IFrequencyData {
     frequency: number;
     real: number;
     imag: number;
+    swr: number;
 }
 
 export interface IFrequencyTable {

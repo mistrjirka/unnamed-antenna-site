@@ -1,6 +1,8 @@
-<h3> Choose antennas </h3>
+<h3 class="pb-3"> Choose antennas </h3>
 
+<div class="row">
 <ng-select
+class="col"
  *ngIf="isReady"
  [items]="optionsList"
  bindLabel="name"
@@ -9,3 +11,5 @@
  [multiple]="true"
  [(ngModel)]="selected">
 </ng-select>
+<button class="btn btn-primary col-3" (click)="findFrequencies()">Find matching frequencies</button>
+</div>

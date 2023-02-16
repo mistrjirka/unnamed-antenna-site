@@ -18,7 +18,7 @@ export class FileloadingService {
     return 1 > vswr || vswr > limit ? limit : vswr;
   }
 
-  async getFrequencyDdata(fname: string): Promise<IFrequencyData[]> {
+  async getFrequencyData(fname: string): Promise<IFrequencyData[]> {
     const result$ = this.http.get(`${this.sfile_root}/${fname}`, {
       responseType: 'text',
     });
@@ -42,7 +42,7 @@ export class FileloadingService {
         });
 
         if (!failed && tmp.length == 3) {
-          parsedData.push({ frequency: tmp[0], real: tmp[1], imag: tmp[2] });
+          parsedData.push({ frequency: tmp[0], real: tmp[1], imag: tmp[2], swr: this.calculateSwr(tmp[1], tmp[2]) });
         }
       }
     });
@@ -50,9 +50,49 @@ export class FileloadingService {
     return parsedData;
   }
 
+  maxData(data:IFrequencyData[][]):IFrequencyData[] 
+  {
+    if(data.length == 0) return [];
+
+    let averagedData:IFrequencyData[] = data[0];
+    
+    averagedData.forEach((point, index)=>{
+      data.slice(0).forEach(element => {
+        point.real = Math.max(element[index].real, point.real);
+        point.imag = Math.max(element[index].imag, point.imag);
+        point.swr = Math.max(element[index].swr, point.swr);
+      });
+      averagedData[index] = point;                                                 
+    });
+
+    return averagedData;
+  }
+
+  averageData(data:IFrequencyData[][]):IFrequencyData[] 
+  {
+    if(data.length == 0) return [];
+
+    let averagedData:IFrequencyData[] = data[0];
+    
+    averagedData.forEach((point, index)=>{
+      data.slice(0).forEach(element => {
+        point.frequency += element[index].frequency;
+        point.real += element[index].real;
+        point.imag += element[index].imag;
+        point.swr += element[index].swr;
+      });
+      point.frequency /= data.length;
+      point.real /= data.length;
+      point.imag /= data.length;
+      point.swr /= data.length;
+      averagedData[index] = point;                                                 
+    });
+
+    return averagedData;
+  }
+
   parseDataToGraph(
     data: IFrequencyData[],
-    limit: number = 5,
     startFrequency: number = 0,
     units: string = "Mhz",
     unitDivider: number = 1000000
@@ -73,7 +113,7 @@ export class FileloadingService {
           (point.frequency / unitDivider).toFixed(0).toString() + units
         );
         parsedData.datasets[0].data.push(
-          this.calculateSwr(point.real, point.imag, limit).toString()
+          point.swr.toString()
         );
       }
     });
@@ -119,7 +159,7 @@ export class FileloadingService {
       let dataBetween = data.slice(startIndex, endIndex);
       let averageSwr = 0;
       dataBetween.forEach((element) => {
-        averageSwr += this.calculateSwr(element.real, element.imag);
+        averageSwr += element.swr;
       });
       averageSwr /= dataBetween.length;
       parsedData.datasets[0].data.push(averageSwr.toFixed(2).toString());
@@ -143,7 +183,7 @@ export class FileloadingService {
     let length: number = 0;
     data.forEach((point) => {
       if (point.frequency / unitDivider > minFrequency) {
-        let swr = this.calculateSwr(point.real, point.imag);
+        let swr = point.swr;
         if (swr <= threshold) {
           if (!logging) {
             usefulRanges.push({

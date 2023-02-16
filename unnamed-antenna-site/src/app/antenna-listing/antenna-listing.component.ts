@@ -14,6 +14,7 @@ export class AntennaListingComponent implements OnInit {
   public antennas: IContentAntenna[] = [];
   public content: IContentFile = {} as IContentFile;
   public ready: boolean = false;
+  public categoryName: string = "";
 
   constructor(private route: ActivatedRoute, private listing: ListingService) {}
 
@@ -22,16 +23,21 @@ export class AntennaListingComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    console.log('hello there');
     this.content = await this.listing.getContent();
     this.route.queryParams.subscribe((params) => {
       this.category = params['category'];
-      console.log(this.content);
       this.antennas = this.listing.getAntennasFromCategory(
         this.content,
         this.category
       );
-      console.log(this.antennas);
+      if(this.category){
+        this.content.categories.every((category) =>{
+          console.log(category, this.category);
+          if(category.id === this.category){
+            this.categoryName = category.name;
+          }
+        })
+      }
       this.ready = true;
     });
   }

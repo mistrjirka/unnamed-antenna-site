@@ -1,13 +1,52 @@
-<nav class="navbar navbar-light bg-dark main-navbar">
-  <a class="navbar-brand" href="#"  >
-    <img src="/assets/icon.png" width="45" height="45" class="d-inline-block align-top" alt="">
-    Unnamed antenna website
-  </a>
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark main-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img
+        src="/assets/icon.png"
+        width="45"
+        height="45"
+        class="d-inline-block align-top"
+        alt=""
+      />
+      Unnamed antenna website
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="">List of antennas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="compare">Compare</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+
 <main>
-  <p style="margin-top: 1rem; color: red; font-weight: bold; padding: 0.5em; border: 1px solid red;">
-    Disclaimer: This website is in Alpha and may contain bugs that can misrepresent results. Measurements are not taken in RF quite environment and can be influenced by outside factors.
+  <p
+    style="
+      margin-top: 1rem;
+      color: red;
+      font-weight: bold;
+      padding: 0.5em;
+      border: 1px solid red;
+    "
+  >
+    Disclaimer: This website is in Alpha and may contain bugs that can
+    misrepresent results. Measurements are not taken in RF quite environment and
+    can be influenced by outside factors.
   </p>
   <router-outlet></router-outlet>
 </main>
-

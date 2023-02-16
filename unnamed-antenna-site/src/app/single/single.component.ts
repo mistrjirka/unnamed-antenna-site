@@ -16,6 +16,7 @@ import {
 } from '../data/frequency-table';
 import { Router } from '@angular/router';
 import { ListingService } from '../services/listing.service';
+import { StoreService } from '../services/store.service';
 
 @Component({
   selector: 'app-single',
@@ -33,7 +34,8 @@ export class SingleComponent implements OnInit {
     private fileLoading: FileloadingService,
     private route: ActivatedRoute,
     private router: Router,
-    private listing: ListingService
+    private listing: ListingService,
+    private store: StoreService
   ) {}
 
   get isReady(): boolean {
@@ -110,22 +112,29 @@ export class SingleComponent implements OnInit {
       this.id = id;
     }
 
-    let tmp: IContentAntenna | null = await this.listing.getAntennaById(
-      this.id
-    );
-    if (tmp != null) {
-      this.antenna = tmp;
-    } else {
-      this.router.navigate(['']);
-    }
+    let frequencyData: IFrequencyData[] = [];
 
-    let frequencyData: IFrequencyData[] =
-      await this.fileLoading.getFrequencyDdata(this.antenna.dataFile);
+    if(id == "analyze"){
+      this.antenna = this.store.getAntenna();
+      frequencyData = this.store.getFrequencyData();
+    }else{
+      let tmp: IContentAntenna | null = await this.listing.getAntennaById(
+        this.id
+      );
+      if (tmp != null) {
+        this.antenna = tmp;
+      } else {
+        this.router.navigate(['']);
+      }
+      frequencyData = await this.fileLoading.getFrequencyData(this.antenna.dataFile);
+    }
+    console.log(frequencyData);
+
+     
     
     let data: IGraphData = this.fileLoading.parseDataToGraph(
       frequencyData,
-      5,
-      5000
+      this.antenna.startFrequency
     );
     let tablesToCheck: IFrequencyTable[][] = [];
 
@@ -171,11 +180,6 @@ export class SingleComponent implements OnInit {
     );
 
     this.createChart(data, 'VSWR over measured frequency range', 'vswr-chart');
-    
-
-    
-    
-
     this.ready = true;
   }
 }
