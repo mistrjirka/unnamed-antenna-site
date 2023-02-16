@@ -52,3 +52,8 @@ export interface IContentFile {
         
     }
 }
+
+export interface ICompatibleAntenna {
+    antenna: IContentAntenna;
+    bands: IFrequencyTable[];
+}

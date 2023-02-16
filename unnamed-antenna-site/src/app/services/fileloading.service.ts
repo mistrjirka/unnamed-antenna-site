@@ -50,7 +50,7 @@ export class FileloadingService {
     return parsedData;
   }
 
-  private processData(data:IFrequencyData[][], f: (...args: number[])=>number):IFrequencyData[] 
+  processData(data:IFrequencyData[][], f: (...args: number[])=>number):IFrequencyData[] 
   {
     if(data.length == 0) return [];
 
@@ -70,12 +70,43 @@ export class FileloadingService {
 
   maxData(data:IFrequencyData[][]):IFrequencyData[] 
   {
-    return this.processData(data, Math.max);
+    if(data.length == 0) return [];
+
+    let averagedData:IFrequencyData[] = data[0];
+    
+    averagedData.forEach((point, index)=>{
+      data.slice(1).forEach(element => {
+        point.real = Math.max(element[index].real, point.real);
+        point.imag = Math.max(element[index].imag, point.imag);
+        point.swr = Math.max(element[index].swr, point.swr);
+      });
+      averagedData[index] = point;                                                 
+    });
+
+    return averagedData;
+
+
   }
 
   minData(data:IFrequencyData[][]):IFrequencyData[] 
   {
-    return this.processData(data, Math.min);
+    if(data.length == 0) return [];
+
+    let averagedData:IFrequencyData[] = data[0];
+    
+    averagedData.forEach((point, index)=>{
+      
+      data.slice(0).forEach(element => {
+        if(point.frequency > 52300000000*0.99 && point.frequency < 52300000000*1.01)
+          console.log(point, element[index]);
+        point.real = Math.min(element[index].real, point.real);
+        point.imag = Math.min(element[index].imag, point.imag);
+        point.swr = Math.min(element[index].swr, point.swr);
+      });
+      averagedData[index] = point;                                                 
+    });
+
+    return averagedData;
   }
 
   averageData(data:IFrequencyData[][]):IFrequencyData[] 
@@ -184,7 +215,8 @@ export class FileloadingService {
     threshold: number = 2,
     minFrequency: number = 0,
     units: string = "Mhz",
-    unitDivider: number = 1000000
+    unitDivider: number = 1000000,
+    dontAddEmpty: boolean = false,
   ): IFrequencyRange[] {
     let usefulRanges: IFrequencyRange[] = [];
     let lastFrequency: number = 0;
@@ -237,7 +269,7 @@ export class FileloadingService {
       usefulRanges[usefulRanges.length - 1].averageSwr = swrAveraging / length;
       usefulRanges[usefulRanges.length - 1].averageSwr = swrAveraging / length;
     }
-    usefulRanges = this.identifyGoodChannels(usefulRanges, tables);
+    usefulRanges = this.identifyGoodChannels(usefulRanges, tables, units, unitDivider, dontAddEmpty);
     return usefulRanges;
   }
 
@@ -245,16 +277,25 @@ export class FileloadingService {
     ranges: IFrequencyRange[],
     tables: IFrequencyTable[][],
     units: string = "Mhz",
-    unitDivider: number = 1000000
+    unitDivider: number = 1000000,
+    dontAddEmpty: boolean = false
   ): IFrequencyRange[] {
-    ranges.forEach((range) => {
+    let indexesToRemove: number[] = [];
+    ranges.forEach((range, index) => {
       tables.forEach((table) => {
         table.forEach((channel) => {
           if(channel.center < (range.center + range.bandwidth/2)/unitDivider && channel.center > (range.center - range.bandwidth/2)/unitDivider){
             range.channels.push(channel)
           }
         });
+        if(range.channels.length == 0 && dontAddEmpty){
+          indexesToRemove.push(index);
+        }
       });1
+    });
+    indexesToRemove = indexesToRemove.reverse();
+    indexesToRemove.forEach((index)=>{
+      ranges.splice(index, 1)
     });
     return ranges;
   }

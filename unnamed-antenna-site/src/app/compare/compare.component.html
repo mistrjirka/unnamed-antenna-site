@@ -1,15 +1,47 @@
-<h3 class="pb-3"> Choose antennas </h3>
+<h3 class="pb-3">Choose antennas</h3>
 
 <div class="row">
-<ng-select
-class="col"
- *ngIf="isReady"
- [items]="optionsList"
- bindLabel="name"
- placeholder="Select item"
- appendTo="body"
- [multiple]="true"
- [(ngModel)]="selected">
-</ng-select>
-<button class="btn btn-primary col-3" (click)="compare.findFrequencies(selected, antennaList, files.averageData)">Find matching frequencies</button>
+  <ng-select
+    class="col"
+    *ngIf="isReady"
+    [items]="optionsList"
+    bindLabel="name"
+    placeholder="Select item"
+    appendTo="body"
+    [multiple]="true"
+    [(ngModel)]="selected"
+  >
+  </ng-select>
+  <ng-select
+    class="col"
+    *ngIf="isReady"
+    [items]="methodsList"
+    bindLabel="name"
+    placeholder="Select method"
+    appendTo="body"
+    [multiple]="false"
+    [(ngModel)]="selectedMethod"
+  >
+  </ng-select>
+    <button type="button" class="btn btn-primary col-1"(click)="compare.findFrequencies(selected, antennaList, methods[selectedMethod.id]);">Process</button>
+  
+</div>
+<h4>Choose band tables to find other antennas that are working on the same band as the antennas above</h4>
+<div class="row">
+    <ng-select
+    class="col"
+    *ngIf="isReady"
+    [items]="tablesList"
+    bindLabel="name"
+    placeholder="Select item"
+    appendTo="body"
+    [multiple]="true"
+    [(ngModel)]="selectedTables"
+  ></ng-select>
+  <button type="button" class="btn btn-primary col-1"(click)="compare.findFrequencies(selected, antennaList, methods[selectedMethod.id]);">Process</button>
+
+</div>
+
+<div *ngIf="results">
+
 </div>
