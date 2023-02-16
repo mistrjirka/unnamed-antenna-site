@@ -1,45 +1,56 @@
+<div *ngIf="isReady">
+  <h2 class="text-center">{{ antenna.name }}</h2>
+  <p>{{ antenna.description }}</p>
+  <p>
+    <a href="/assets/data/{{ antenna.dataFile }}" download>
+      Download the raw touchstone file</a
+    >
+  </p>
+  <h3 class="text-center">Useful Frequency range (vsrw < 2.0)</h3>
+  <div>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Center</th>
+          <th scope="col">Bandwidth</th>
+          <th scope="col">Avg. VSWR</th>
+          <th scope="col">Channels</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fRange of usefulRanges; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            {{ floor(fRange.center / antenna.unitDivider) }} {{ antenna.units }}
+          </td>
+          <td>
+            {{ floor(fRange.bandwidth / antenna.unitDivider) }}
+            {{ antenna.units }}
+          </td>
+          <td>{{ fRange.averageSwr.toFixed(2) }}</td>
+          <td>
+            <span *ngIf="fRange.channels.length == 0"
+              >No channels in this range</span
+            >
+            <span *ngFor="let channel of fRange.channels; last as isLast"
+              >{{ channel.name }}<span *ngIf="!isLast">, </span>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-    <div *ngIf="isReady">
-        <h2 class="text-center">{{antenna.name}}</h2>
-        <p>{{antenna.description}}</p>
-        <p> <a href="/assets/data/{{antenna.dataFile}}" download> Download the raw touchstone file</a>
-        </p>
-        <h3 class="text-center">Useful Frequency range (vsrw < 2.0)</h3>
-        <div>
-            <table class="table table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Center</th>
-                    <th scope="col">Bandwidth</th>
-                    <th scope="col">Avg. VSWR</th>
-                    <th scope="col">Channels</th>
+<div class="chart-container table-responsive">
+  <canvas id="vswr-chart" style="height: 400px" class="table"></canvas>
+</div>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let fRange of usefulRanges; let i = index">
-                    <th scope="row">{{i+1}}</th>
-                    <td>{{floor(fRange.center/antenna.unitDivider)}} {{antenna.units}}</td>
-                    <td>{{floor(fRange.bandwidth/antenna.unitDivider)}} {{antenna.units}}</td>
-                    <td>{{fRange.averageSwr.toFixed(2)}}</td>
-                    <td><span *ngIf="fRange.channels.length == 0">No channels in this range</span>
-                      <span *ngFor="let channel of fRange.channels; last as isLast">{{channel.name}}<span *ngIf="!isLast">, </span> </span></td>
-                  </tr>
-                
-                </tbody>
-              </table>
-        </div>
-    </div>
+<div class="chart-container table-responsive">
+  <canvas id="fpv-analog-chart" style="height: 400px" class="table"></canvas>
+</div>
 
-    <div class="chart-container table-responsive">
-        <canvas id="vswr-chart" style="height:400px" class="table"></canvas>
-    </div>
-
-    <div class="chart-container table-responsive">
-        <canvas id="fpv-analog-chart" style="height:400px" class="table"></canvas>
-    </div>
-
-    <div class="chart-container table-responsive">
-        <canvas id="fpv-digital-chart" style="height:400px" class="table"></canvas>
-    </div>
+<div class="chart-container table-responsive">
+  <canvas id="fpv-digital-chart" style="height: 400px" class="table"></canvas>
+</div>
