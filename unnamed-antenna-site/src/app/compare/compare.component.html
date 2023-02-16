@@ -11,5 +11,5 @@ class="col"
  [multiple]="true"
  [(ngModel)]="selected">
 </ng-select>
-<button class="btn btn-primary col-3" (click)="findFrequencies()">Find matching frequencies</button>
+<button class="btn btn-primary col-3" (click)="compare.findFrequencies(selected, antennaList, files.averageData)">Find matching frequencies</button>
 </div>

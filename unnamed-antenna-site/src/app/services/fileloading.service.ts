@@ -50,22 +50,32 @@ export class FileloadingService {
     return parsedData;
   }
 
-  maxData(data:IFrequencyData[][]):IFrequencyData[] 
+  private processData(data:IFrequencyData[][], f: (...args: number[])=>number):IFrequencyData[] 
   {
     if(data.length == 0) return [];
 
     let averagedData:IFrequencyData[] = data[0];
     
     averagedData.forEach((point, index)=>{
-      data.slice(0).forEach(element => {
-        point.real = Math.max(element[index].real, point.real);
-        point.imag = Math.max(element[index].imag, point.imag);
-        point.swr = Math.max(element[index].swr, point.swr);
+      data.slice(1).forEach(element => {
+        point.real = f(element[index].real, point.real);
+        point.imag = f(element[index].imag, point.imag);
+        point.swr = f(element[index].swr, point.swr);
       });
       averagedData[index] = point;                                                 
     });
 
     return averagedData;
+  }
+
+  maxData(data:IFrequencyData[][]):IFrequencyData[] 
+  {
+    return this.processData(data, Math.max);
+  }
+
+  minData(data:IFrequencyData[][]):IFrequencyData[] 
+  {
+    return this.processData(data, Math.min);
   }
 
   averageData(data:IFrequencyData[][]):IFrequencyData[] 
@@ -75,7 +85,7 @@ export class FileloadingService {
     let averagedData:IFrequencyData[] = data[0];
     
     averagedData.forEach((point, index)=>{
-      data.slice(0).forEach(element => {
+      data.slice(1).forEach(element => {
         point.frequency += element[index].frequency;
         point.real += element[index].real;
         point.imag += element[index].imag;
