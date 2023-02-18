@@ -81,7 +81,7 @@ export class CompareService {
 
     let processedData: IFrequencyData[] = dataProcessing(data);
 
-    this.store.storeAntennaList(antennaList);
+    this.store.storeAntennaList(selected);
     this.store.storeFrequencyData(processedData);
     this.store.storeAntenna(antenna);
     if (redirect) this.router.navigate(['/detail/analyze']);
@@ -130,6 +130,7 @@ export class CompareService {
   async getListOfCompatibleAntennas(
     antennaOrig: IContentAntenna,
     frequencyData: IFrequencyData[],
+    antennaList: IAntennaList[],
     tables: IFrequencyTable[][],
     threshold: number = 2
   ): Promise<ICompatibleAntenna[]> {
@@ -151,29 +152,32 @@ export class CompareService {
     );
     for (let i = 0; i < allAntennas.length; i++) {
       let antennaToTest: IContentAntenna = allAntennas[i];
-      let tmpFrequencyData: IFrequencyData[] =
-        await this.files.getFrequencyData(antennaToTest.dataFile);
-      let tmpFrequencyRanges: IFrequencyRange[] =
-        await this.files.findUsefulFrequencies(
-          tmpFrequencyData,
-          tables,
-          threshold,
-          antennaToTest.startFrequency,
-          antennaToTest.units,
-          antennaToTest.unitDivider,
-          true
-        );
-      let commonRanges: IFrequencyRange[] = [];
-      frequencyRanges.forEach((origRange) => {
-        tmpFrequencyRanges.forEach((testRange) => {
-          let tmp = this.overlapOfRanges(testRange, origRange);
-          if (tmp.center != -1) {
-            commonRanges.push(tmp);
-          }
+
+      if (!antennaList.find((a) => a.id === antennaToTest.id)) {
+        let tmpFrequencyData: IFrequencyData[] =
+          await this.files.getFrequencyData(antennaToTest.dataFile);
+        let tmpFrequencyRanges: IFrequencyRange[] =
+          await this.files.findUsefulFrequencies(
+            tmpFrequencyData,
+            tables,
+            threshold,
+            antennaToTest.startFrequency,
+            antennaToTest.units,
+            antennaToTest.unitDivider,
+            true
+          );
+        let commonRanges: IFrequencyRange[] = [];
+        frequencyRanges.forEach((origRange) => {
+          tmpFrequencyRanges.forEach((testRange) => {
+            let tmp = this.overlapOfRanges(testRange, origRange);
+            if (tmp.center != -1) {
+              commonRanges.push(tmp);
+            }
+          });
         });
-      });
-      if (commonRanges.length != 0) {
-        results.push({ antenna: antennaToTest, bands: commonRanges });
+        if (commonRanges.length != 0) {
+          results.push({ antenna: antennaToTest, bands: commonRanges });
+        }
       }
     }
 

@@ -78,19 +78,21 @@ export class CompareComponent implements OnInit {
   }
 
   public async findAntennas() {
+    this.compatibleReady = false;
     let tables = this.getTables();
     if (tables.length == 0) {
       alert('Please select bands of interest');
       return;
     }
 
-    this.compare.findFrequencies(
+    await this.compare.findFrequencies(
       this.selected,
       this.antennaList,
-      this.methods[this.selectedMethod.id]
+      this.methods[this.selectedMethod.id],
+      false
     );
-    if (!this.store.getAntenna().hasOwnProperty('id') || this.store.getFrequencyData().length == 0) return;
-    this.compatibleAntennaList = await this.compare.getListOfCompatibleAntennas(this.store.getAntenna(), this.store.getFrequencyData(), tables, 2);
+    if (!this.store.getAntenna().hasOwnProperty('name') || this.store.getFrequencyData().length == 0) return;
+    this.compatibleAntennaList = await this.compare.getListOfCompatibleAntennas(this.store.getAntenna(), this.store.getFrequencyData(), this.store.getAntennaList(), tables, 2);
     this.compatibleReady = true;
   }
 }
