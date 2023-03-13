@@ -75,3 +75,36 @@ export let DigFrequencyTable: IFrequencyTable[] = [
     {name: "HDZ3 CE", center: 5806, bandwidth: 27},
     {name: "HDZ4 CE", center: 5843, bandwidth: 27},
 ]
+
+
+export let VHFFrequencyTable: IFrequencyTable[] = [
+    {name: "VHF Free frequency CZ 1 1W", center: 172725, bandwidth: 16},
+    {name: "VHF Free frequency CZ 2 1W", center: 173050, bandwidth: 16},
+    {name: "VHF Free frequency CZ 3 5W", center: 172650, bandwidth: 16},
+    {name: "VHF Free frequency CZ 4 5W", center: 172950, bandwidth: 16},
+    {name: "VHF Free frequency CZ 5 5W", center: 172975, bandwidth: 16},
+]
+
+export let UHFFrequencyTable: IFrequencyTable[] = [
+    {name: "UHF Free frequency CZ 1 1W", center: 449770, bandwidth: 14},
+    {name: "UHF Free frequency CZ 2 1W", center: 449810, bandwidth: 14},
+    {name: "UHF Free frequency CZ 3 5W", center: 448490, bandwidth: 14},
+    {name: "UHF Free frequency CZ 4 5W", center: 448570, bandwidth: 14},
+    {name: "UHF Free frequency CZ 5 5W", center: 448610, bandwidth: 14},
+    {name: "PMR 1", center: 446006.25, bandwidth: 13},
+    {name: "PMR 2", center: 446018.75, bandwidth: 13},
+    {name: "PMR 3", center: 446031.25, bandwidth: 13},
+    {name: "PMR 4", center: 446043.75, bandwidth: 13},
+    {name: "PMR 5", center: 446056.25, bandwidth: 13},
+    {name: "PMR 6", center: 446068.75, bandwidth: 13},
+    {name: "PMR 7", center: 446081.25, bandwidth: 13},
+    {name: "PMR 8", center: 446093.75, bandwidth: 13},
+    {name: "PMR 9", center: 446106.25, bandwidth: 13},
+    {name: "PMR 10", center: 446118.75, bandwidth: 13},
+    {name: "PMR 11", center: 446131.25, bandwidth: 13},
+    {name: "PMR 12", center: 446143.75, bandwidth: 13},
+    {name: "PMR 13", center: 446156.25, bandwidth: 13},
+    {name: "PMR 14", center: 446168.75, bandwidth: 13},
+    {name: "PMR 15", center: 446181.25, bandwidth: 13},
+    {name: "PMR 16", center: 446193.75, bandwidth: 13}
+]

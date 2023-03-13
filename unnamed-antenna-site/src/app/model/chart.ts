@@ -43,7 +43,7 @@ export interface IContentAntenna{
     description:string;
     dataFile: string;
     image: string;
-    tables: ("digital" | "analogue")[]
+    tables: ("digital" | "analogue" | "uhf" | "vhf")[]
 }
 export interface IContentFile {
     categories: IContentCategory[];

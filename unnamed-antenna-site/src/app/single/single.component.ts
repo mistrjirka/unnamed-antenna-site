@@ -13,6 +13,8 @@ import {
 import {
   AnalogueFrequencyTable,
   DigFrequencyTable,
+  VHFFrequencyTable,
+  UHFFrequencyTable
 } from '../data/frequency-table';
 import { Router } from '@angular/router';
 import { ListingService } from '../services/listing.service';
@@ -37,13 +39,19 @@ export class SingleComponent implements OnInit {
     private listing: ListingService,
     private store: StoreService
   ) {}
+  
+  get tablesExist(){
+    return this.antenna !== undefined && this.antenna.tables !== undefined;
+  }
 
   get isReady(): boolean {
     return this.ready;
   }
+
   floor(num: number) {
     return Math.floor(num);
   }
+
   createChart(data: IGraphData, name: string, classname: string) {
     return new Chart(classname, {
       type: 'line', //this denotes tha type of chart
@@ -73,6 +81,7 @@ export class SingleComponent implements OnInit {
       },
     });
   }
+
   createBarChart(data: IGraphData, name: string, classname: string) {
     return new Chart(classname, {
       type: 'bar', //this denotes tha type of chart
@@ -134,9 +143,44 @@ export class SingleComponent implements OnInit {
     
     let data: IGraphData = this.fileLoading.parseDataToGraph(
       frequencyData,
-      this.antenna.startFrequency
+      this.antenna.startFrequency,
+      this.antenna.endFrequency,
+      this.antenna.units,
+      this.antenna.unitDivider
     );
     let tablesToCheck: IFrequencyTable[][] = [];
+
+    if(this.antenna.tables.indexOf("vhf")!= -1){
+      tablesToCheck.push(VHFFrequencyTable);
+      let vhfData: IGraphData = this.fileLoading.parseDataToFpvGraph(
+        frequencyData,
+        VHFFrequencyTable,
+        'green',
+        this.antenna.units,
+        this.antenna.unitDivider
+      );
+      this.createBarChart(
+        vhfData,
+        'VSWR over VHF communication channels',
+        'vhf-chart'
+      );
+    }
+
+    if(this.antenna.tables.indexOf("uhf")!= -1){
+      tablesToCheck.push(UHFFrequencyTable);
+      let uhfData: IGraphData = this.fileLoading.parseDataToFpvGraph(
+        frequencyData,
+        UHFFrequencyTable,
+        'white',
+        this.antenna.units,
+        this.antenna.unitDivider
+      );
+      this.createBarChart(
+        uhfData,
+        'VSWR over UHF communication channels',
+        'uhf-chart'
+      );
+    }
 
     if(this.antenna.tables.indexOf("digital")!= -1){
       tablesToCheck.push(DigFrequencyTable);

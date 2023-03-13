@@ -135,6 +135,7 @@ export class FileloadingService {
   parseDataToGraph(
     data: IFrequencyData[],
     startFrequency: number = 0,
+    endFrequency: number = 0,
     units: string = "Mhz",
     unitDivider: number = 1000000
   ): IGraphData {
@@ -149,7 +150,7 @@ export class FileloadingService {
       ],
     };
     data.forEach((point) => {
-      if (point.frequency / unitDivider > startFrequency) {
+      if (point.frequency / unitDivider > startFrequency && point.frequency / unitDivider < endFrequency) {
         parsedData.labels.push(
           (point.frequency / unitDivider).toFixed(0).toString() + units
         );
@@ -197,7 +198,7 @@ export class FileloadingService {
         endIndex++
       );
 
-      let dataBetween = data.slice(startIndex, endIndex);
+      let dataBetween = data.slice(startIndex, endIndex+1);
       let averageSwr = 0;
       dataBetween.forEach((element) => {
         averageSwr += element.swr;
@@ -293,7 +294,7 @@ export class FileloadingService {
         }
       });1
     });
-    indexesToRemove = indexesToRemove.reverse();
+    indexesToRemove = [...new Set(indexesToRemove.reverse())];
     indexesToRemove.forEach((index)=>{
       ranges.splice(index, 1)
     });

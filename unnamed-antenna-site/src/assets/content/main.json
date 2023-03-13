@@ -7,7 +7,7 @@
             
             {
                 "id": "tbs-triumph-rpsma",
-                "name": "TBS Triumph RP-SMA.",
+                "name": "TBS Triumph RP-SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -67,7 +67,7 @@
             },
             {
                 "id": "short-actuna-pagoda-2b",
-                "name": "short Actuna pagoda 2 SMA.",
+                "name": "short Actuna pagoda 2 SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -151,7 +151,7 @@
             },
             {
                 "id": "tbs-triumph-90-sma",
-                "name": "TBS Triumph 90° adapter SMA.",
+                "name": "TBS Triumph 90° adapter SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -163,7 +163,7 @@
             },
             {
                 "id": "mamba-ultras-sma",
-                "name": "Mamba ultras SMA.",
+                "name": "Mamba ultras SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -175,7 +175,7 @@
             },
             {
                 "id": "iflight-long-albatros-sma",
-                "name": "long iFlight Albatros SMA.",
+                "name": "long iFlight Albatros SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -187,7 +187,7 @@
             },
             {
                 "id": "short-iflight-albatros-sma",
-                "name": "short iFlight Albatros SMA.",
+                "name": "short iFlight Albatros SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -199,7 +199,7 @@
             },
             {
                 "id": "actuna-pagoda-2",
-                "name": "Actuna pagoda 2 SMA.",
+                "name": "Actuna pagoda 2 SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -211,7 +211,7 @@
             },
             {
                 "id": "immersionrc-spironet",
-                "name": "ImmersionRC spironet SMA.",
+                "name": "ImmersionRC spironet SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -223,7 +223,7 @@
             },
             {
                 "id": "short-fatshark-spironet",
-                "name": "short Fatshark spironet SMA.",
+                "name": "short Fatshark spironet SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -235,7 +235,7 @@
             },
             {
                 "id": "walkeera-rodeo-150",
-                "name": "Walkeera rodeo 150 stick antenna SMA.",
+                "name": "Walkeera rodeo 150 stick antenna SMA",
                 "units": "Mhz",
                 "unitDivider": 1000000,
                 "startFrequency": 5000,
@@ -244,7 +244,79 @@
                 "dataFile": "walkeera-rodeo-150.s1p",
                 "image":"",
                 "tables": ["analogue"]
-            }           
+            },
+            {
+                "id": "hlgrc-lr-hammer",
+                "name": "HLGRC LR HAMMER antenna SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "hlgrc-lr-hammer.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "ibcrazy-crosshair-xtreme",
+                "name": "IBCrazy VAS Crosshair xtreme 30° adapter SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "ibcrazy-crosshair-xtreme.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "ibcrazy-crosshair-xtreme-clean",
+                "name": "IBCrazy VAS Crosshair xtreme SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "ibcrazy-crosshair-xtreme-clean.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "247-stianx-patch",
+                "name": "247 Stianx patch SMA",
+                "units": "Mhz",
+                "unitDivider": 1000000,
+                "startFrequency": 5000,
+                "endFrequency": 6000,
+                "description": "Not new. Measured on range 5Ghz to 6Ghz, 495.3Khz/step. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "247-stianx-patch.s1p",
+                "image":"",
+                "tables": ["analogue"]
+            },
+            {
+                "id": "baofeng-uv5r-default-1",
+                "name": "Baofeng UV5R default antenna sample 1",
+                "units": "Khz",
+                "unitDivider": 1000,
+                "startFrequency": 80000,
+                "endFrequency": 480000,
+                "description": "Antenna that comes with the Baofeng UV5R radio. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "baofeng-uv5r-default-1.s1p",
+                "image":"",
+                "tables": ["vhf", "uhf"]
+            },
+            {
+                "id": "baofeng-uv5r-default-2",
+                "name": "Baofeng UV5R default antenna sample 2",
+                "units": "Khz",
+                "unitDivider": 1000,
+                "startFrequency": 80000,
+                "endFrequency": 480000,
+                "description": "Antenna that comes with the Baofeng UV5R radio. Averaged sweep of 25/6 (measurements/thrown out measurements).",
+                "dataFile": "baofeng-uv5r-default-2.s1p",
+                "image":"",
+                "tables": ["vhf", "uhf"]
+            }  
         ]
     }
 
